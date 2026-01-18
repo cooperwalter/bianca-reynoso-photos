@@ -30,7 +30,7 @@
     "ufo": "^1.1.0"
   },
   "devDependencies": {
-    "@nuxt/eslint-config": "^0.1.1",
+    "@nuxt/eslint-config": "^1.12.1",
     "@nuxt/icon": "^2.0.0",
     "@nuxt/image": "^2.0.0",
     "@nuxtjs/color-mode": "^4.0.0",
@@ -38,7 +38,7 @@
     "@tailwindcss/typography": "^0.5.9",
     "@types/rellax": "^1.7.4",
     "better-sqlite3": "^12.6.2",
-    "eslint": "^8.34.0",
+    "eslint": "^9.0.0",
     "nuxt": "^4.0.0",
     "nuxt-component-meta": "^0.17.1",
     "nuxt-studio": "^1.1.0",

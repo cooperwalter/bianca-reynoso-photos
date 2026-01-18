@@ -43,7 +43,7 @@ const { links } = defineProps<{
               ]"
               :to="link.to"
             >
-              <span @click.native="close" class="truncate px-4 py-2 block">{{
+              <span @click="close" class="truncate px-4 py-2 block">{{
                 link.name
               }}</span>
             </NuxtLink>
