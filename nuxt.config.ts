@@ -53,4 +53,13 @@ export default defineNuxtConfig({
   },
 
   compatibilityDate: "2025-01-17",
+
+  studio: {
+    repository: {
+      provider: "github",
+      owner: "cooperwalter",
+      repo: "bianca-reynoso-photos",
+      branch: "main"
+    }
+  }
 });
