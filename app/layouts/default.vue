@@ -1,5 +1,5 @@
 <template>
-  <article class="min-h-screen flex flex-col items-stretch">
+  <article class="min-h-screen flex flex-col items-stretch overflow-x-hidden">
     
     <!-- ring -->
     <div class="fixed inset-0 flex justify-center sm:px-8">
