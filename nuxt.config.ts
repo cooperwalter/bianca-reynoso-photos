@@ -54,6 +54,14 @@ export default defineNuxtConfig({
 
   compatibilityDate: "2025-01-17",
 
+  nitro: {
+    prerender: {
+      routes: ['/'],
+      crawlLinks: true,
+      failOnError: false
+    }
+  },
+
   studio: {
     repository: {
       provider: "github",
