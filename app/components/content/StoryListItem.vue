@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { Image } from "~/../types/image";
+import type { Image } from "~/types/image";
 
 type Story = {
-  _path: string;
-  title: string;
+  _path?: string;
+  title?: string;
   description?: string;
   cover?: Image;
   date?: string;

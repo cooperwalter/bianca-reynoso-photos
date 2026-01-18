@@ -9,13 +9,14 @@ export default defineNuxtConfig({
   /**
    * Nuxt.js modules
    */
-  modules: [// Doc: https://tailwindcss.nuxtjs.org/
-  "@nuxtjs/tailwindcss", // Doc: https://image.nuxtjs.org/
-  "@nuxt/image-edge", // Doc: https://content.nuxtjs.org/
-  "@nuxt/content", // Doc: https://vueuse.org/guide/#installation
-  "@vueuse/nuxt", // Doc: https://color-mode.nuxtjs.org/
-  "@nuxtjs/color-mode", // Doc: https://github.com/nuxt-modules/icon
-  "nuxt-icon"],
+  modules: [
+    "@nuxtjs/tailwindcss",
+    "@nuxt/image",
+    "@nuxt/content",
+    "@vueuse/nuxt",
+    "@nuxtjs/color-mode",
+    "@nuxt/icon",
+  ],
 
   /**
    * <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -57,5 +58,5 @@ export default defineNuxtConfig({
     cssPath: "./assets/css/tailwind.css",
   },
 
-  compatibilityDate: "2025-04-09",
+  compatibilityDate: "2025-01-17",
 });

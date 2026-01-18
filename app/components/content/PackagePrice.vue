@@ -32,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Image } from "~/../types/image";
+import type { Image } from "~/types/image";
 interface Props {
   title: string;
   description?: string;
