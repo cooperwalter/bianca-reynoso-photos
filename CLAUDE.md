@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Maya is a photography portfolio template built with Nuxt 3, using a document-driven architecture where pages are defined in Markdown files with Vue components embedded via MDC (Markdown Components) syntax.
+Bianca Reynoso Photos is a photography portfolio built with Nuxt 3, using a document-driven architecture where pages are defined in Markdown files with Vue components embedded via MDC (Markdown Components) syntax.
 
 ## Commands
 

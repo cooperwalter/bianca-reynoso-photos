@@ -1,13 +1,6 @@
-![Maya Nuxt Template](./cover-dark.webp#gh-dark-mode-only)
-![Maya Nuxt Template](./cover-light.webp#gh-light-mode-only)
+# Bianca Reynoso Photos
 
-# Maya Nuxt Template
-
-A personal photography portfolio template built with Nuxt.js and Tailwind CSS.
-
-👀 [Demo](https://maya-nuxt-template.vercel.app)
-
-📖 Docs (WIP)
+A photography portfolio built with Nuxt.js and Tailwind CSS.
 
 ## Features
 
@@ -58,7 +51,7 @@ pnpm lint         # Run ESLint
 
 ## Nuxt Studio
 
-This template includes the [Nuxt Studio](https://nuxt.studio) module for browser-based content editing.
+This project uses the [Nuxt Studio](https://nuxt.studio) module for browser-based content editing.
 
 ### Local Development
 
