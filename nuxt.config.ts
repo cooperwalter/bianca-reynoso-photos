@@ -2,6 +2,10 @@
 export default defineNuxtConfig({
   pages: true,
 
+  devServer: {
+    port: 3311,
+  },
+
   /**
    * Nuxt.js modules
    */
