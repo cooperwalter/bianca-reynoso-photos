@@ -38,7 +38,7 @@ defineProps({
           <NuxtImg
             placeholder
             :src="photo?.src ? photo.src : 'img/placeholder.jpg'"
-            :alt="photo?.alt ? photo.alt : 'Oscar Mattern'"
+            :alt="photo?.alt ? photo.alt : 'Bianca Reynoso'"
             :width="photo?.width ? photo.width : 1"
             :height="photo?.height ? photo.height : 1"
             format="webp"
