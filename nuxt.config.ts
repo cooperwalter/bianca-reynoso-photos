@@ -15,7 +15,7 @@ export default defineNuxtConfig({
   "@nuxt/content", // Doc: https://vueuse.org/guide/#installation
   "@vueuse/nuxt", // Doc: https://color-mode.nuxtjs.org/
   "@nuxtjs/color-mode", // Doc: https://github.com/nuxt-modules/icon
-  "nuxt-icon", "@nuxthq/studio"],
+  "nuxt-icon"],
 
   /**
    * <link rel="preconnect" href="https://fonts.googleapis.com">
