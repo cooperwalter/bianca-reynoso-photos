@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { withTrailingSlash } from "ufo";
-
 const props = defineProps({
   path: {
     type: String,
@@ -8,10 +6,15 @@ const props = defineProps({
   },
 });
 
+const normalizedPath = computed(() => props.path.startsWith('/') ? props.path : `/${props.path}`)
+
 const { data: _stories } = await useAsyncData(
   "stories",
   async () =>
-    await queryContent(withTrailingSlash(props.path)).sort({ date: -1 }).find()
+    await queryCollection('content')
+      .where('path', 'LIKE', `${normalizedPath.value}/%`)
+      .order('date', 'DESC')
+      .all()
 );
 
 const stories = computed(() => _stories.value || []);
@@ -22,7 +25,7 @@ const stories = computed(() => _stories.value || []);
     v-if="stories?.length"
     class="not-prose grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
   >
-    <StoryListItem v-for="story in stories" :key="story._path" :story="story" />
+    <StoryListItem v-for="story in stories" :key="story.path" :story="story" />
     
   </div>
   <div v-else>

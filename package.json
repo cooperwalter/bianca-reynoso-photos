@@ -22,7 +22,7 @@
   "dependencies": {
     "@headlessui/vue": "^1.7.10",
     "@heroicons/vue": "^2.0.16",
-    "@nuxt/content": "^2.13.0",
+    "@nuxt/content": "^3.11.0",
     "@vueuse/core": "^14.0.0",
     "@vueuse/nuxt": "^14.0.0",
     "photoswipe": "^5.3.5",
@@ -33,13 +33,15 @@
     "@nuxt/eslint-config": "^0.1.1",
     "@nuxt/icon": "^2.0.0",
     "@nuxt/image": "^2.0.0",
-    "@nuxthq/studio": "^2.2.1",
     "@nuxtjs/color-mode": "^4.0.0",
     "@nuxtjs/tailwindcss": "^6.4.1",
     "@tailwindcss/typography": "^0.5.9",
     "@types/rellax": "^1.7.4",
+    "better-sqlite3": "^12.6.2",
     "eslint": "^8.34.0",
     "nuxt": "^4.0.0",
+    "nuxt-component-meta": "^0.17.1",
+    "nuxt-studio": "^1.1.0",
     "release-it": "^15.6.0",
     "sharp": "^0.34.5",
     "tailwindcss": "^3.2.7",
@@ -64,6 +66,7 @@
     },
     "onlyBuiltDependencies": [
       "@parcel/watcher",
+      "better-sqlite3",
       "esbuild",
       "sharp",
       "vue-demi"

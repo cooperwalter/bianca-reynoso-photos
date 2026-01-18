@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { withTrailingSlash } from "ufo";
-
 const props = defineProps({
   path: {
     type: String,
@@ -8,10 +6,14 @@ const props = defineProps({
   },
 });
 
+const normalizedPath = computed(() => props.path.startsWith('/') ? props.path : `/${props.path}`)
+
 const { data: _galleries } = await useAsyncData(
   "galleries",
   async () =>
-    await queryContent(withTrailingSlash(props.path)).find()
+    await queryCollection('content')
+      .where('path', 'LIKE', `${normalizedPath.value}/%`)
+      .all()
 );
 
 const galleries = computed(() => _galleries.value || [])

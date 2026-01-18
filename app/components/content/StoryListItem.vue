@@ -2,7 +2,7 @@
 import type { Image } from "~/types/image";
 
 type Story = {
-  _path?: string;
+  path?: string;
   title?: string;
   description?: string;
   cover?: Image;
@@ -15,7 +15,7 @@ defineProps({
     type: Object as PropType<Story>,
     required: true,
     validator: (value: Story) =>{
-      if (value?._path && value?.title) {
+      if (value?.path && value?.title) {
         return true;
       }
       return false;
@@ -25,7 +25,7 @@ defineProps({
 </script>
 
 <template>
-  <NuxtLink :to="story._path" class="group">
+  <NuxtLink :to="story.path" class="group">
     <div
       class="relative w-full overflow-hidden rounded-lg sm:aspect-[3/2] md:aspect-square lg:aspect-[2/3] dark:bg-zinc-800"
     >

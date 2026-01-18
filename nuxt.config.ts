@@ -16,7 +16,8 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     "@nuxtjs/color-mode",
     "@nuxt/icon",
-    "@nuxthq/studio",
+    "nuxt-component-meta",
+    "nuxt-studio",
   ],
 
   /**
@@ -40,14 +41,6 @@ export default defineNuxtConfig({
           rel: "stylesheet",
         },
       ],
-    },
-  },
-
-  content: {
-    // https://content.nuxtjs.org/api/configuration
-    documentDriven: true,
-    markdown: {
-      anchorLinks: false,
     },
   },
 

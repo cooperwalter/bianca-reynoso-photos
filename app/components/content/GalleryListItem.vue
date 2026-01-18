@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Image } from "~/types/image";
 type Gallery = {
-  _path?: string;
+  path?: string;
   title?: string;
   description?: string;
   cover?: Image;
@@ -13,7 +13,7 @@ const props = defineProps({
     type: Object as PropType<Gallery>,
     required: true,
     validator: (value: Gallery) => {
-      if (value?._path && value.title) {
+      if (value?.path && value.title) {
         return true;
       }
       return false;
@@ -23,7 +23,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <NuxtLink :to="gallery._path" class="group">
+  <NuxtLink :to="gallery.path" class="group">
     <div
       class="relative w-full overflow-hidden rounded-lg aspect-[3/2] md:aspect-[2/3] dark:bg-zinc-800"
     >
