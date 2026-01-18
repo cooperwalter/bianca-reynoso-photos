@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Bianca Reynoso Photos is a photography portfolio built with Nuxt 3, using a document-driven architecture where pages are defined in Markdown files with Vue components embedded via MDC (Markdown Components) syntax.
+Bianca Reynoso Photos is a photography portfolio built with Nuxt 4, using a document-driven architecture where pages are defined in Markdown files with Vue components embedded via MDC (Markdown Components) syntax.
 
 ## Commands
 
@@ -33,7 +33,7 @@ The numeric prefix (e.g., `1.`, `2.`) controls navigation order.
 
 ### MDC Component Syntax
 
-Vue components in `components/content/` are used directly in Markdown:
+Vue components in `app/components/content/` are used directly in Markdown:
 
 ```markdown
 ::ComponentName{prop="value"}
@@ -56,8 +56,8 @@ prop2: value2
 
 ### Layouts
 
-- `layouts/default.vue` - Standard pages with Container wrapper
-- `layouts/story.vue` - Blog post layout with prose styling
+- `app/layouts/default.vue` - Standard pages with Container wrapper
+- `app/layouts/story.vue` - Blog post layout with prose styling
 
 Layouts are specified in frontmatter: `layout: default` or `layout: story`
 
@@ -65,14 +65,14 @@ Layouts are specified in frontmatter: `layout: default` or `layout: story`
 
 - **@nuxt/content** - Document-driven pages from Markdown
 - **@nuxtjs/tailwindcss** - Styling with Tailwind CSS
-- **@nuxt/image-edge** - Optimized images via `<NuxtImg>`
+- **@nuxt/image** - Optimized images via `<NuxtImg>`
 - **@nuxtjs/color-mode** - Dark/light mode toggle (class-based)
-- **nuxt-icon** - Icon component with 100k+ icons
+- **@nuxt/icon** - Icon component with 100k+ icons
 - **@vueuse/nuxt** - Vue composition utilities
 
 ### Image Handling
 
-Use the `Image` type from `types/image.ts` for image props:
+Use the `Image` type from `app/types/image.ts` for image props:
 ```typescript
 interface Image {
   src: string;
@@ -82,12 +82,12 @@ interface Image {
 }
 ```
 
-Gallery images use PhotoSwipe lightbox via `components/PhotoSwipe.vue` wrapper.
+Gallery images use PhotoSwipe lightbox via `app/components/PhotoSwipe.vue` wrapper.
 
 ### Custom Plugins
 
-- `plugins/cls.ts` - Provides `$cls()` helper for conditional class merging
-- `plugins/parallax/index.ts` - `v-parallax` directive using Rellax library
+- `app/plugins/cls.ts` - Provides `$cls()` helper for conditional class merging
+- `app/plugins/parallax/index.ts` - `v-parallax` directive using Rellax library
 
 ### Tailwind Configuration
 
