@@ -3,14 +3,17 @@ defineProps({
   title: {
     type: String,
     required: false,
+    default: "",
   },
   description: {
     type: String,
     required: false,
+    default: "",
   },
   year: {
     type: String,
     required: false,
+    default: "",
   },
 });
 </script>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { innerClass } = defineProps<{
+const { innerClass = "" } = defineProps<{
     innerClass?: string;
 }>();
 </script>

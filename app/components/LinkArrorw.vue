@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {ArrowLongRightIcon} from "@heroicons/vue/20/solid"
 const props = withDefaults(defineProps<{
-    to: string;
+    to?: string;
 }>(),{
     to: "/",
 })

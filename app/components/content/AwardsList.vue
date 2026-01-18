@@ -9,10 +9,12 @@ defineProps({
   titleText: {
     type: String,
     required: false,
+    default: "",
   },
   awards: {
     type: Array as PropType<Award[]>,
     required: false,
+    default: () => [],
   },
 });
 </script>

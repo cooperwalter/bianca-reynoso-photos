@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { src, alt } = defineProps<{
+const { src, alt = "" } = defineProps<{
   src: string;
   alt?: string;
 }>();

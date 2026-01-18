@@ -4,14 +4,17 @@ defineProps({
   quote: {
     type: String,
     required: false,
+    default: "",
   },
   name: {
     type: String,
     required: false,
+    default: "",
   },
   image: {
     type: Object as PropType<Image>,
     required: false,
+    default: undefined,
   },
 });
 </script>

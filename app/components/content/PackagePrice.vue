@@ -45,5 +45,6 @@ interface Props {
 withDefaults(defineProps<Props>(), {
   description: "",
   currency: "USD",
+  image: undefined,
 });
 </script>
