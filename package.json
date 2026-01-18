@@ -23,6 +23,7 @@
     "@headlessui/vue": "^1.7.10",
     "@heroicons/vue": "^2.0.16",
     "@nuxt/content": "^3.11.0",
+    "@nuxtjs/i18n": "^10.2.1",
     "@vueuse/core": "^14.0.0",
     "@vueuse/nuxt": "^14.0.0",
     "photoswipe": "^5.3.5",

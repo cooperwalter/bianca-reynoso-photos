@@ -6,12 +6,18 @@ const props = defineProps({
   },
 });
 
+const { locale, t } = useI18n()
+
+const collectionName = computed(() =>
+  locale.value === 'es' ? 'content_es' : 'content_en'
+)
+
 const normalizedPath = computed(() => props.path.startsWith('/') ? props.path : `/${props.path}`)
 
 const { data: _galleries } = await useAsyncData(
-  "galleries",
+  `galleries-${locale.value}`,
   async () =>
-    await queryCollection('content')
+    await queryCollection(collectionName.value as 'content_en' | 'content_es')
       .where('path', 'LIKE', `${normalizedPath.value}/%`)
       .all()
 );
@@ -30,7 +36,7 @@ const galleries = computed(() => _galleries.value || [])
     </div>
     <div v-else>
       <p class="">
-        No galleries found.
+        {{ t('errors.noGalleries') }}
       </p>
     </div>
 </template>

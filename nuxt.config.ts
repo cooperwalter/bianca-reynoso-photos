@@ -18,7 +18,26 @@ export default defineNuxtConfig({
     "@nuxt/icon",
     "nuxt-component-meta",
     "nuxt-studio",
+    "@nuxtjs/i18n",
   ],
+
+  i18n: {
+    locales: [
+      { code: 'en', language: 'en-US', name: 'English', file: 'en.json' },
+      { code: 'es', language: 'es-ES', name: 'Español', file: 'es.json' },
+    ],
+    defaultLocale: 'en',
+    strategy: 'prefix_except_default',
+    langDir: 'locales',
+    baseUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://biancareynoso.com',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root',
+      alwaysRedirect: false,
+      fallbackLocale: 'en',
+    },
+  },
 
   /**
    * <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -56,7 +75,7 @@ export default defineNuxtConfig({
 
   nitro: {
     prerender: {
-      routes: ['/'],
+      routes: ['/', '/es/'],
       crawlLinks: true,
       failOnError: false
     }

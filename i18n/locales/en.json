@@ -1,0 +1,31 @@
+{
+  "nav": {
+    "home": "Home",
+    "galleries": "Galleries",
+    "stories": "Stories"
+  },
+  "ui": {
+    "colorMode": "Color Mode",
+    "darkMode": "Dark Mode",
+    "lightMode": "Light Mode",
+    "menu": "Menu",
+    "language": "Language"
+  },
+  "footer": {
+    "allRightsReserved": "All rights reserved."
+  },
+  "cta": {
+    "title": "Questions or collaboration ideas?",
+    "description": "I would love to hear from you! Whether you have questions about my work, have collaboration ideas, or are interested in connecting, don't hesitate to reach out.",
+    "responseTime": "I usually respond within hours!"
+  },
+  "hero": {
+    "tagline": "Inspire Emotion and Evoke Storytelling through the Art of Photography.",
+    "description": "Explore my photography portfolio and see the world through my creative lens. Contact me if you would like to connect."
+  },
+  "errors": {
+    "pageNotFound": "Page not found",
+    "noGalleries": "No galleries found.",
+    "noStories": "No stories found."
+  }
+}

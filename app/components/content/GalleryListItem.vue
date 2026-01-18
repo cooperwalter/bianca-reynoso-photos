@@ -8,6 +8,8 @@ type Gallery = {
   images?: Image[];
 };
 
+const localePath = useLocalePath()
+
 defineProps({
   gallery: {
     type: Object as PropType<Gallery>,
@@ -23,7 +25,7 @@ defineProps({
 </script>
 
 <template>
-  <NuxtLink :to="gallery.path" class="group">
+  <NuxtLink :to="localePath(gallery.path || '')" class="group">
     <div
       class="relative w-full overflow-hidden rounded-lg aspect-[3/2] md:aspect-[2/3] dark:bg-zinc-800"
     >
@@ -37,7 +39,7 @@ defineProps({
         loading="lazy"
         placeholder
       />
-      <div class="absolute bottom-0 w-full p-4 grid grid-cols-4 gap-3" v-if="gallery?.images?.length">
+      <div v-if="gallery?.images?.length" class="absolute bottom-0 w-full p-4 grid grid-cols-4 gap-3" >
         <div
           v-for="thumbnail, index in gallery.images.slice(0, 4)"
           :key="index"

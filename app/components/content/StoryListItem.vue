@@ -10,6 +10,8 @@ type Story = {
   tags?: string[];
 };
 
+const localePath = useLocalePath()
+
 defineProps({
   story: {
     type: Object as PropType<Story>,
@@ -25,7 +27,7 @@ defineProps({
 </script>
 
 <template>
-  <NuxtLink :to="story.path" class="group">
+  <NuxtLink :to="localePath(story.path || '')" class="group">
     <div
       class="relative w-full overflow-hidden rounded-lg sm:aspect-[3/2] md:aspect-square lg:aspect-[2/3] dark:bg-zinc-800"
     >

@@ -6,12 +6,18 @@ const props = defineProps({
   },
 });
 
+const { locale, t } = useI18n()
+
+const collectionName = computed(() =>
+  locale.value === 'es' ? 'content_es' : 'content_en'
+)
+
 const normalizedPath = computed(() => props.path.startsWith('/') ? props.path : `/${props.path}`)
 
 const { data: _stories } = await useAsyncData(
-  "stories",
+  `stories-${locale.value}`,
   async () =>
-    await queryCollection('content')
+    await queryCollection(collectionName.value as 'content_en' | 'content_es')
       .where('path', 'LIKE', `${normalizedPath.value}/%`)
       .order('date', 'DESC')
       .all()
@@ -29,6 +35,6 @@ const stories = computed(() => _stories.value || []);
     
   </div>
   <div v-else>
-    <p class="">No Stories found.</p>
+    <p class="">{{ t('errors.noStories') }}</p>
   </div>
 </template>

@@ -1,9 +1,12 @@
 <script setup lang="ts">
-const links = [
-  { name: "Home", to: "/" },
-  { name: "Galleries", to: "/galleries" },
-  { name: "Stories", to: "/stories" },
-] as { name: string; to: string }[];
+const { t } = useI18n()
+const localePath = useLocalePath()
+
+const links = computed(() => [
+  { name: t('nav.home'), to: localePath('/') },
+  { name: t('nav.galleries'), to: localePath('/galleries') },
+  { name: t('nav.stories'), to: localePath('/stories') },
+])
 
 onMounted(() => {
   window.addEventListener("scroll", onScroll);
@@ -50,6 +53,7 @@ const onScroll = () => {
             <div class="lg:hidden">
               <NavLinksMobile :links="links" />
             </div>
+            <LanguageSwitcher />
             <ColorModeSwitch />
           </div>
         </div>

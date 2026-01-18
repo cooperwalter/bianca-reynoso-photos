@@ -1,0 +1,31 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "galleries": "Galerías",
+    "stories": "Historias"
+  },
+  "ui": {
+    "colorMode": "Modo de Color",
+    "darkMode": "Modo Oscuro",
+    "lightMode": "Modo Claro",
+    "menu": "Menú",
+    "language": "Idioma"
+  },
+  "footer": {
+    "allRightsReserved": "Todos los derechos reservados."
+  },
+  "cta": {
+    "title": "¿Preguntas o ideas de colaboración?",
+    "description": "¡Me encantaría saber de ti! Ya sea que tengas preguntas sobre mi trabajo, ideas de colaboración, o estés interesado en conectar, no dudes en comunicarte.",
+    "responseTime": "¡Normalmente respondo en pocas horas!"
+  },
+  "hero": {
+    "tagline": "Inspirar Emoción y Evocar Narrativas a través del Arte de la Fotografía.",
+    "description": "Explora mi portafolio de fotografía y ve el mundo a través de mi lente creativo. Contáctame si te gustaría conectar."
+  },
+  "errors": {
+    "pageNotFound": "Página no encontrada",
+    "noGalleries": "No se encontraron galerías.",
+    "noStories": "No se encontraron historias."
+  }
+}

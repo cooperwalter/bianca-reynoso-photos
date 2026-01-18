@@ -2,6 +2,8 @@
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
 import { Bars2Icon } from "@heroicons/vue/20/solid";
 
+const { t } = useI18n()
+
 const { links } = defineProps<{
   links: { name: string; to: string }[];
 }>();
@@ -12,7 +14,7 @@ const { links } = defineProps<{
       <MenuButton
         class="border rounded-full px-2 py-2 text-zinc-500 border-zinc-500 hover:bg-white hover:text-zinc-900 hover:border-zinc-900 active:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-700 focus-visible:ring-opacity-75"
       >
-        <span class="sr-only">Menu</span>
+        <span class="sr-only">{{ t('ui.menu') }}</span>
         <Bars2Icon class="h-4 w-4" aria-hidden="true" />
       </MenuButton>
     </div>
