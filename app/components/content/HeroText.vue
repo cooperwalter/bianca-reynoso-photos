@@ -5,7 +5,7 @@
         <slot> Inspire Emotion and Evoke Storytelling through the Art of Photography. </slot>
       </h1>
       <p class="text-zinc-700 dark:text-zinc-400 text-center text-sm lg:text-base px-0 md:px-14 lg:px-24">
-        <slot name="description"> Explore my photography portfolio and see the world through my creative lens. Contact me if you would like to hire me. </slot>
+        <slot name="description"> Explore my photography portfolio and see the world through my creative lens. Contact me if you would like to connect. </slot>
       </p>
     </div>
   </div>
