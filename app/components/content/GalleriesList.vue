@@ -12,7 +12,10 @@ const collectionName = computed(() =>
   locale.value === 'es' ? 'content_es' : 'content_en'
 )
 
-const normalizedPath = computed(() => props.path.startsWith('/') ? props.path : `/${props.path}`)
+const normalizedPath = computed(() => {
+  const basePath = props.path.startsWith('/') ? props.path : `/${props.path}`
+  return `/${locale.value}${basePath}`
+})
 
 const { data: _galleries } = await useAsyncData(
   `galleries-${locale.value}`,
