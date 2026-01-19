@@ -1,28 +1,34 @@
 <script setup lang="ts">
-const route = useRoute()
 const { t } = useI18n()
 
-const urlLocale = computed(() => {
-  return route.path.startsWith('/es') ? 'es' : 'en'
-})
+const requestUrl = useRequestURL()
+const currentPath = requestUrl.pathname
 
-const collectionName = computed(() =>
-  urlLocale.value === 'es' ? 'content_es' : 'content_en'
-)
+function getLocaleFromPath(path: string): 'en' | 'es' {
+  return path.startsWith('/es') ? 'es' : 'en'
+}
 
-const contentPath = computed(() => {
-  let path = route.path
-  if (path.startsWith('/es/')) {
-    path = path.replace('/es/', '/')
-  } else if (path === '/es') {
-    path = '/'
+function getCollectionName(locale: 'en' | 'es'): 'content_en' | 'content_es' {
+  return locale === 'es' ? 'content_es' : 'content_en'
+}
+
+function getContentPath(path: string, locale: 'en' | 'es'): string {
+  let normalizedPath = path
+  if (normalizedPath.startsWith('/es/')) {
+    normalizedPath = normalizedPath.replace('/es/', '/')
+  } else if (normalizedPath === '/es') {
+    normalizedPath = '/'
   }
-  return `/${urlLocale.value}${path === '/' ? '' : path}`
-})
+  return `/${locale}${normalizedPath === '/' ? '' : normalizedPath}`
+}
+
+const urlLocale = getLocaleFromPath(currentPath)
+const collectionName = getCollectionName(urlLocale)
+const contentPath = getContentPath(currentPath, urlLocale)
 
 const { data: page } = await useAsyncData(
-  `page-${urlLocale.value}-${route.path}`,
-  () => queryCollection(collectionName.value as 'content_en' | 'content_es').path(contentPath.value).first()
+  `page-${urlLocale}-${currentPath}`,
+  () => queryCollection(collectionName).path(contentPath).first()
 )
 
 if (!page.value) {
