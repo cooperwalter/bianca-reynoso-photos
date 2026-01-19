@@ -12,6 +12,10 @@ type Story = {
 
 const localePath = useLocalePath()
 
+function stripLocalePrefix(path: string): string {
+  return path.replace(/^\/(en|es)/, '')
+}
+
 defineProps({
   story: {
     type: Object as PropType<Story>,
@@ -27,7 +31,7 @@ defineProps({
 </script>
 
 <template>
-  <NuxtLink :to="localePath(story.path || '')" class="group">
+  <NuxtLink :to="localePath(stripLocalePrefix(story.path || ''))" class="group">
     <div
       class="relative w-full overflow-hidden rounded-lg sm:aspect-[3/2] md:aspect-square lg:aspect-[2/3] dark:bg-zinc-800"
     >

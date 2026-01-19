@@ -18,6 +18,10 @@ function getContentPath(path: string, locale: 'en' | 'es'): string {
     normalizedPath = normalizedPath.replace('/es/', '/')
   } else if (normalizedPath === '/es') {
     normalizedPath = '/'
+  } else if (normalizedPath.startsWith('/en/')) {
+    normalizedPath = normalizedPath.replace('/en/', '/')
+  } else if (normalizedPath === '/en') {
+    normalizedPath = '/'
   }
   return `/${locale}${normalizedPath === '/' ? '' : normalizedPath}`
 }
