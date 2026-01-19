@@ -12,7 +12,7 @@ defineProps({
   orientation: {
     type: String,
     required: false,
-    default: "left",
+    default: "center",
   },
 });
 </script>
