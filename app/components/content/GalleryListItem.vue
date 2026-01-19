@@ -10,6 +10,10 @@ type Gallery = {
 
 const localePath = useLocalePath()
 
+function stripLocalePrefix(path: string): string {
+  return path.replace(/^\/(en|es)/, '')
+}
+
 defineProps({
   gallery: {
     type: Object as PropType<Gallery>,
@@ -25,7 +29,7 @@ defineProps({
 </script>
 
 <template>
-  <NuxtLink :to="localePath(gallery.path || '')" class="group">
+  <NuxtLink :to="localePath(stripLocalePrefix(gallery.path || ''))" class="group">
     <div
       class="relative w-full overflow-hidden rounded-lg aspect-[3/2] md:aspect-[2/3] dark:bg-zinc-800"
     >
