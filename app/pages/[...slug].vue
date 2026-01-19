@@ -1,29 +1,50 @@
 <script setup lang="ts">
-const route = useRoute()
 const { t } = useI18n()
+const route = useRoute()
 
-const urlLocale = computed(() => {
-  return route.path.startsWith('/es') ? 'es' : 'en'
-})
+const currentPath = route.path
 
-const collectionName = computed(() =>
-  urlLocale.value === 'es' ? 'content_es' : 'content_en'
-)
+function getLocaleFromPath(path: string): 'en' | 'es' {
+  return path.startsWith('/es') ? 'es' : 'en'
+}
 
-const contentPath = computed(() => {
-  let path = route.path
-  if (path.startsWith('/es/')) {
-    path = path.replace('/es/', '/')
-  } else if (path === '/es') {
-    path = '/'
+function getCollectionName(locale: 'en' | 'es'): 'content_en' | 'content_es' {
+  return locale === 'es' ? 'content_es' : 'content_en'
+}
+
+function getContentPath(path: string, locale: 'en' | 'es'): string {
+  let normalizedPath = path
+  if (normalizedPath.startsWith('/es/')) {
+    normalizedPath = normalizedPath.replace('/es/', '/')
+  } else if (normalizedPath === '/es') {
+    normalizedPath = '/'
   }
-  return `/${urlLocale.value}${path === '/' ? '' : path}`
-})
+  return `/${locale}${normalizedPath === '/' ? '' : normalizedPath}`
+}
 
-const { data: page } = await useAsyncData(
-  `page-${urlLocale.value}-${route.path}`,
-  () => queryCollection(collectionName.value as 'content_en' | 'content_es').path(contentPath.value).first()
+const urlLocale = getLocaleFromPath(currentPath)
+const collectionName = getCollectionName(urlLocale)
+const contentPath = getContentPath(currentPath, urlLocale)
+const safePathKey = currentPath.replace(/\//g, '_') || '_root'
+const asyncDataKey = `page-${urlLocale}-${safePathKey}`
+
+console.log('[slug] asyncDataKey:', asyncDataKey, 'collectionName:', collectionName, 'contentPath:', contentPath)
+
+const { data: page, status, refresh } = await useAsyncData(
+  asyncDataKey,
+  () => queryCollection(collectionName).path(contentPath).first(),
+  {
+    deep: false
+  }
 )
+
+console.log('[slug] After useAsyncData: status:', status.value, 'page exists:', !!page.value)
+
+if (import.meta.client && !page.value) {
+  console.log('[slug] CLIENT: No page data, refreshing...')
+  await refresh()
+  console.log('[slug] CLIENT: After refresh, page exists:', !!page.value)
+}
 
 if (!page.value) {
   throw createError({ statusCode: 404, message: t('errors.pageNotFound') })
