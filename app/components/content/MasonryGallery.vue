@@ -5,18 +5,27 @@ type Props = {
   images: Image[];
 };
 
-defineProps<Props>();
+const props = defineProps<Props>();
 
 const img = useImage();
+
+// Transform images for PhotoSwipe dataSource
+const pswpImages = computed(() => {
+  return props.images.map((image) => ({
+    src: img(image.src, { width: 1600 }),
+    width: image.width || 1600,
+    height: image.height || 1200,
+  }));
+});
 </script>
 
 <template>
   <div class="not-prose">
-    <PhotoSwipe>
+    <PhotoSwipe :images="pswpImages">
       <div>
         <MasonryWall :items="images" :ssr-columns="1" :column-width="300" :gap="32" class="grid grid-cols-2 lg:grid-cols-3 gap-8">
-          <template #default="{ item }">
-            <a class="photoswipe-item rounded-xl overflow-hidden block dark:bg-zinc-800 bg-zinc-200" :href="img((item as Image).src, { width: 1600 })" data-cropped="true" :data-pswp-width="(item as Image).width" :data-pswp-height="(item as Image).height">
+          <template #default="{ item, index }">
+            <a class="photoswipe-item rounded-xl overflow-hidden block dark:bg-zinc-800 bg-zinc-200" :href="img((item as Image).src, { width: 1600 })" data-cropped="true" :data-pswp-width="(item as Image).width" :data-pswp-height="(item as Image).height" :data-pswp-index="index">
               <NuxtImg :src="(item as Image).src" alt="Some image" sizes="sm:90vw md:50vw lg:30vw" class="w-full h-full object-cover object-center" :width="(item as Image).width" :height="(item as Image).height" loading="lazy" />
             </a>
           </template>
