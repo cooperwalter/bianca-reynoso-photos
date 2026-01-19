@@ -28,22 +28,14 @@ const contentPath = getContentPath(currentPath, urlLocale)
 const safePathKey = currentPath.replace(/\//g, '_') || '_root'
 const asyncDataKey = `page-${urlLocale}-${safePathKey}`
 
-console.log('[slug] asyncDataKey:', asyncDataKey, 'collectionName:', collectionName, 'contentPath:', contentPath)
-
-const { data: page, status, refresh } = await useAsyncData(
+const { data: page, refresh } = await useAsyncData(
   asyncDataKey,
   () => queryCollection(collectionName).path(contentPath).first(),
-  {
-    deep: false
-  }
+  { deep: false }
 )
 
-console.log('[slug] After useAsyncData: status:', status.value, 'page exists:', !!page.value)
-
 if (import.meta.client && !page.value) {
-  console.log('[slug] CLIENT: No page data, refreshing...')
   await refresh()
-  console.log('[slug] CLIENT: After refresh, page exists:', !!page.value)
 }
 
 if (!page.value) {
