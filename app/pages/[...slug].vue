@@ -66,30 +66,23 @@ console.log('[slug]   page.value?.id:', page.value?.id)
 console.log('[slug]   page.value?.title:', page.value?.title)
 
 if (isClient) {
+  console.log('[slug] CLIENT: window.location.href:', window.location.href)
+  console.log('[slug] CLIENT: window.location.pathname:', window.location.pathname)
+
+  const nuxtDataScript = document.querySelector('script[id="__NUXT_DATA__"]')
+  console.log('[slug] CLIENT: __NUXT_DATA__ script exists:', !!nuxtDataScript)
+  if (nuxtDataScript) {
+    console.log('[slug] CLIENT: __NUXT_DATA__ data-src:', nuxtDataScript.getAttribute('data-src'))
+    console.log('[slug] CLIENT: __NUXT_DATA__ innerHTML (first 500 chars):', nuxtDataScript.innerHTML?.substring(0, 500))
+  }
+
+  console.log('[slug] CLIENT: nuxtApp.payload.path:', nuxtApp.payload?.path)
+  console.log('[slug] CLIENT: nuxtApp.payload.serverRendered:', nuxtApp.payload?.serverRendered)
+
   console.log('[slug] CLIENT: Checking window.__NUXT__')
   const nuxtData = (window as unknown as { __NUXT__?: Record<string, unknown> }).__NUXT__
   console.log('[slug] CLIENT: __NUXT__ exists:', !!nuxtData)
   console.log('[slug] CLIENT: __NUXT__ top-level keys:', nuxtData ? Object.keys(nuxtData) : 'N/A')
-  console.log('[slug] CLIENT: __NUXT__.state:', nuxtData?.state)
-  console.log('[slug] CLIENT: __NUXT__.data:', nuxtData?.data)
-  console.log('[slug] CLIENT: __NUXT__.payload:', nuxtData?.payload)
-  if (nuxtData?.state && typeof nuxtData.state === 'object') {
-    const state = nuxtData.state as Record<string, unknown>
-    console.log('[slug] CLIENT: __NUXT__.state keys:', Object.keys(state))
-    console.log('[slug] CLIENT: Looking for asyncDataKey in state:', state[asyncDataKey])
-    const dataKey = `$s${asyncDataKey}`
-    console.log('[slug] CLIENT: Looking for $s prefixed key:', state[dataKey])
-  }
-  const useNuxtApp = window.useNuxtApp as (() => { payload?: { data?: Record<string, unknown> } }) | undefined
-  if (useNuxtApp) {
-    try {
-      const app = useNuxtApp()
-      console.log('[slug] CLIENT: nuxtApp.payload.data:', app?.payload?.data)
-      console.log('[slug] CLIENT: nuxtApp.payload.data keys:', app?.payload?.data ? Object.keys(app.payload.data) : 'N/A')
-    } catch (e) {
-      console.log('[slug] CLIENT: Could not get nuxtApp:', e)
-    }
-  }
 }
 
 if (!page.value) {
