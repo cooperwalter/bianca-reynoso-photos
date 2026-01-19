@@ -1,9 +1,13 @@
 <script setup lang="ts">
 const route = useRoute()
-const { locale, t } = useI18n()
+const { t } = useI18n()
+
+const urlLocale = computed(() => {
+  return route.path.startsWith('/es') ? 'es' : 'en'
+})
 
 const collectionName = computed(() =>
-  locale.value === 'es' ? 'content_es' : 'content_en'
+  urlLocale.value === 'es' ? 'content_es' : 'content_en'
 )
 
 const contentPath = computed(() => {
@@ -13,12 +17,11 @@ const contentPath = computed(() => {
   } else if (path === '/es') {
     path = '/'
   }
-  const localePath = `/${locale.value}${path === '/' ? '' : path}`
-  return localePath || `/${locale.value}`
+  return `/${urlLocale.value}${path === '/' ? '' : path}`
 })
 
 const { data: page } = await useAsyncData(
-  `page-${locale.value}-${route.path}`,
+  `page-${urlLocale.value}-${route.path}`,
   () => queryCollection(collectionName.value as 'content_en' | 'content_es').path(contentPath.value).first()
 )
 
