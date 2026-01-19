@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const { t } = useI18n()
 const route = useRoute()
+const nuxtApp = useNuxtApp()
 
 const requestUrl = useRequestURL()
 const currentPath = requestUrl.pathname
@@ -40,6 +41,14 @@ console.log('[slug] collectionName:', collectionName)
 console.log('[slug] contentPath:', contentPath)
 console.log('[slug] asyncDataKey:', asyncDataKey)
 
+console.log('[slug] BEFORE useAsyncData - checking nuxtApp.payload:')
+console.log('[slug]   nuxtApp.payload exists:', !!nuxtApp.payload)
+console.log('[slug]   nuxtApp.payload.data:', nuxtApp.payload?.data)
+console.log('[slug]   nuxtApp.payload.data keys:', nuxtApp.payload?.data ? Object.keys(nuxtApp.payload.data) : 'N/A')
+console.log('[slug]   nuxtApp.payload.data[asyncDataKey]:', nuxtApp.payload?.data?.[asyncDataKey])
+console.log('[slug]   nuxtApp.payload.prerenderedAt:', nuxtApp.payload?.prerenderedAt)
+console.log('[slug]   nuxtApp.isHydrating:', nuxtApp.isHydrating)
+
 const { data: page, status, error, pending } = await useAsyncData(
   asyncDataKey,
   () => {
@@ -58,9 +67,29 @@ console.log('[slug]   page.value?.title:', page.value?.title)
 
 if (isClient) {
   console.log('[slug] CLIENT: Checking window.__NUXT__')
-  const nuxtData = (window as unknown as { __NUXT__?: { data?: Record<string, unknown> } }).__NUXT__
-  console.log('[slug] CLIENT: __NUXT__.data keys:', nuxtData?.data ? Object.keys(nuxtData.data) : 'N/A')
-  console.log('[slug] CLIENT: __NUXT__.data[asyncDataKey]:', nuxtData?.data?.[asyncDataKey])
+  const nuxtData = (window as unknown as { __NUXT__?: Record<string, unknown> }).__NUXT__
+  console.log('[slug] CLIENT: __NUXT__ exists:', !!nuxtData)
+  console.log('[slug] CLIENT: __NUXT__ top-level keys:', nuxtData ? Object.keys(nuxtData) : 'N/A')
+  console.log('[slug] CLIENT: __NUXT__.state:', nuxtData?.state)
+  console.log('[slug] CLIENT: __NUXT__.data:', nuxtData?.data)
+  console.log('[slug] CLIENT: __NUXT__.payload:', nuxtData?.payload)
+  if (nuxtData?.state && typeof nuxtData.state === 'object') {
+    const state = nuxtData.state as Record<string, unknown>
+    console.log('[slug] CLIENT: __NUXT__.state keys:', Object.keys(state))
+    console.log('[slug] CLIENT: Looking for asyncDataKey in state:', state[asyncDataKey])
+    const dataKey = `$s${asyncDataKey}`
+    console.log('[slug] CLIENT: Looking for $s prefixed key:', state[dataKey])
+  }
+  const useNuxtApp = window.useNuxtApp as (() => { payload?: { data?: Record<string, unknown> } }) | undefined
+  if (useNuxtApp) {
+    try {
+      const app = useNuxtApp()
+      console.log('[slug] CLIENT: nuxtApp.payload.data:', app?.payload?.data)
+      console.log('[slug] CLIENT: nuxtApp.payload.data keys:', app?.payload?.data ? Object.keys(app.payload.data) : 'N/A')
+    } catch (e) {
+      console.log('[slug] CLIENT: Could not get nuxtApp:', e)
+    }
+  }
 }
 
 if (!page.value) {
